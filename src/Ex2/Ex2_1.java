@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.*;
 
 public class Ex2_1{
 
@@ -38,7 +40,7 @@ public class Ex2_1{
      * @param fileName Name of a file.
      * @return line count of a file
      */
-    synchronized public static int readFileAndCountRows(String fileName){
+    public static int readFileAndCountRows(String fileName){
         //Create new file object
         File file = new File(fileName);
 
@@ -97,7 +99,6 @@ public class Ex2_1{
     }
 
 
-    //BUG Thread run-times not consistent.
     public int getNumOfLinesThreads(String[] fileNames){
         int sum = 0;
         CounterThread[] threads = new CounterThread[fileNames.length];
@@ -120,9 +121,35 @@ public class Ex2_1{
         return sum;
     }
 
+    public int getNumOfLinesThreadPool(String[] fileNames){
+        int sum = 0;
+        ExecutorService threadPool = Executors.newFixedThreadPool(fileNames.length);
+        Future<Integer>[] futures = new Future[fileNames.length];
+
+        for(int i = 0; i < fileNames.length; i++){
+            futures[i] = threadPool.submit(new ThreadPoolHelper(fileNames[i]));
+        }
+
+        threadPool.shutdown(); //Close thread-pool after finishing submissions
+        try {
+            threadPool.awaitTermination(30, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        for(Future<Integer> future: futures){
+            try {
+                sum += future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         Ex2_1 ex2_1 = new Ex2_1();
-        String[] files = createTextFiles(100, 1, 100); //Create files
+        String[] files = createTextFiles(10, 1, 10); //Create files
         long startTimeRegular = System.currentTimeMillis(); //Start measuring regular algorithm run-time.
         System.out.println(getNumOfLines(files)); //Calculate the number of rows of all generated files and print it.
         long endTimeRegular = System.currentTimeMillis(); //End measure of regular algorithm run-time.
@@ -133,7 +160,12 @@ public class Ex2_1{
         System.out.println(ex2_1.getNumOfLinesThreads(files)); //Calculate the number of rows of all generated files and print it.
         long endTimeThread = System.currentTimeMillis(); //End measure of regular algorithm run-time.
 
-        System.err.println("Regular algorithm run time "+ (endTimeRegular - startTimeRegular) + "ms");
-        System.err.println("Thread algorithm run time "+ (endTimeThread - startTimeThread) + "ms"); //Print regular algorithm run-time.
+        long startTimeThreadPool = System.currentTimeMillis(); //Start measuring regular algorithm run-time.
+        System.out.println(ex2_1.getNumOfLinesThreadPool(files)); //Calculate the number of rows of all generated files and print it.
+        long endTimeThreadPool = System.currentTimeMillis(); //End measure of regular algorithm run-time.
+
+        System.err.println("Regular algorithm run time "+ (endTimeRegular - startTimeRegular) + "ms"); //Print regular algorithm run-time.
+        System.err.println("Thread algorithm run time "+ (endTimeThread - startTimeThread) + "ms"); //Print thread algorithm run-time.
+        System.err.println("Thread-Pool algorithm run time "+ (endTimeThreadPool - startTimeThreadPool) + "ms"); //Print thread algorithm run-time.
     }
 }

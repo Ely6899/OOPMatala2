@@ -8,13 +8,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41139925-aef9-42c5-9f9e-7b68671cafff" name="Changes" comment="Deleted unnecessary interface">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Ex2/CounterThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Ex2/ThreadPoolHelper.java" afterDir="false" />
+    <list default="true" id="41139925-aef9-42c5-9f9e-7b68671cafff" name="Changes" comment="Implemented file generating and line counting">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2/CounterThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2/CounterThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ex2/Ex2_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2/Ex2_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ex2/FileReadWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2/FileReadWrite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
       <workItem from="1672302278975" duration="9526000" />
       <workItem from="1672407739731" duration="10974000" />
       <workItem from="1672432281250" duration="11000" />
-      <workItem from="1672497993773" duration="3951000" />
+      <workItem from="1672497993773" duration="8034000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted unnecessary interface">
       <created>1672314736031</created>
@@ -101,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672314736031</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented file generating and line counting">
+      <created>1672505039009</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672505039009</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,7 +125,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted unnecessary interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted unnecessary interface" />
+    <MESSAGE value="Implemented file generating and line counting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented file generating and line counting" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
