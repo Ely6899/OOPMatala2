@@ -1,0 +1,50 @@
+package Ex2P2;
+
+public enum TaskType {
+    COMPUTATIONAL(1){
+        @Override
+        public String toString() {
+            return "Computational Task";
+        }
+    },
+
+    IO(2){
+        @Override
+        public String toString() {
+            return "IO-Bound Task";
+        }
+    },
+
+    OTHER(3){
+        @Override
+        public String toString() {
+            return "Unknown Task";
+        }
+    };
+
+    private int typePriority;
+
+    private TaskType(int priority){
+        if(validatePriority(priority))
+            typePriority = priority;
+        else
+            throw new IllegalArgumentException("Priority not an integer");
+    }
+
+    public void setPriority(int priority){
+        if(validatePriority(priority))
+            this.typePriority = priority;
+    }
+
+    public int getPriorityValue(){
+        return typePriority;
+    }
+
+    public TaskType getType(){
+        return this;
+    }
+
+    private boolean validatePriority(int priority) {
+        return priority >= 1 && priority <= 10;
+    }
+}
