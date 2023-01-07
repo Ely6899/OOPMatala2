@@ -99,7 +99,10 @@ public class Ex2_1{
 
         for(int i = 0; i < fileNames.length; i++){
             threads[i] = new CounterThread(fileNames[i]);
-            threads[i].start();
+        }
+
+        for(CounterThread thread: threads){
+            thread.start();
         }
 
         for(CounterThread thread: threads){
@@ -110,11 +113,6 @@ public class Ex2_1{
                 throw new RuntimeException(e);
             }
         }
-
-        /*for(CounterThread thread: threads){
-            sum += thread.getLineCount();
-        }*/
-
         return sum;
     }
 
@@ -135,18 +133,13 @@ public class Ex2_1{
             }
         }
         threadPool.shutdown(); //Close thread-pool after finishing submissions
-        try {
-            threadPool.awaitTermination(Long.MAX_VALUE, TimeUnit.MICROSECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         return sum;
     }
 
     public static void main(String[] args) {
         Ex2_1 ex2_1 = new Ex2_1();
-        String[] files = createTextFiles(10, 1, 10); //Create files
+        String[] files = createTextFiles(3000, 1, 10); //Create files
         System.err.println("Finished generating files");
 
         long startTimeRegular = System.currentTimeMillis(); //Start measuring regular algorithm run-time.
