@@ -1,4 +1,4 @@
-package Ex2_2;
+/*package Ex2_2;
 
 import java.util.Objects;
 import java.util.PriorityQueue;
@@ -47,6 +47,6 @@ public class CustomExecutor {
     public void addNewTaskToQueue(Task<?> task){
         this.priorityQueue.add(task);
     }
-}
+}*/
 
 

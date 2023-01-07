@@ -23,7 +23,7 @@ public class Task<T> implements Comparable<Task<T>>, Callable<T>{
     }
 
     public static <T> Task<T> createTask(Callable<T> callable, TaskType taskType){
-        return new Task<T>(callable, taskType);
+        return new Task<>(callable, taskType);
     }
 
     @Override
