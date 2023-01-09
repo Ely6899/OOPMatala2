@@ -8,15 +8,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41139925-aef9-42c5-9f9e-7b68671cafff" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/src/Ex2P2/Tests.java" afterDir="false" />
+    <list default="true" id="41139925-aef9-42c5-9f9e-7b68671cafff" name="Changes" comment="Impelemted CustomExecutor">
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/CounterThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/Ex2_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/Ex2_1Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/Part1Diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/Part1Diagram.uml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ex2P1/ThreadPoolHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPMatala2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOPMatala2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2/CounterThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2/Ex2_1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2/ThreadPoolHelper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ex2P2/CustomExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2P2/CustomExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ex2P2/Ex2_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2P2/Ex2_2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ex2P2/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2P2/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ex2_2/CustomExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2_2/CustomExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ex2_2/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2_2/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2P2/TaskType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2P2/TaskType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2P2/Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2P2/Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2_2/CustomExecutor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2_2/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2_2/TaskInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2_2/TaskType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +39,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -56,7 +68,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/ely6899/IdeaProjects/OOPMatala2/src/Ex2",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "last_opened_file_path": "/home/ely6899/IdeaProjects/OOPMatala2/src/Ex2P2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,14 +86,20 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Ex2" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Ex2" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tests">
-    <configuration name="Ex2Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Ex2P2.Ex2Main" />
+  <component name="RunManager">
+    <configuration name="Ex2_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Ex2P1.Ex2_1" />
       <module name="OOPMatala2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Ex2P2.*" />
+          <option name="PATTERN" value="Ex2P1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,43 +107,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Ex2_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Ex2P2.Ex2_2" />
+    <configuration name="Ex2_1Test.testCreateFilesRegular" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OOPMatala2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Ex2P2.*" />
+          <option name="PATTERN" value="Ex2P1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Ex2" />
+      <option name="MAIN_CLASS_NAME" value="Ex2P1.Ex2_1Test" />
+      <option name="METHOD_NAME" value="testCreateFilesRegular" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Ex2_2.Ex2_2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Ex2_2.Ex2_2" />
+    <configuration name="Ex2_1Test.testRunTimes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OOPMatala2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Ex2_2.*" />
+          <option name="PATTERN" value="Ex2P1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Ex2" />
+      <option name="MAIN_CLASS_NAME" value="Ex2P1.Ex2_1Test" />
+      <option name="METHOD_NAME" value="testRunTimes" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Ex2_1Test.testWriteFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OOPMatala2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Ex2P2.*" />
+          <option name="PATTERN" value="Ex2P1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Ex2P2" />
-      <option name="MAIN_CLASS_NAME" value="Ex2P2.Tests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="Ex2" />
+      <option name="MAIN_CLASS_NAME" value="Ex2P1.Ex2_1Test" />
+      <option name="METHOD_NAME" value="testWriteFile" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,7 +163,7 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Ex2P2" />
+      <option name="PACKAGE_NAME" value="Ex2_2" />
       <option name="MAIN_CLASS_NAME" value="Ex2P2.Tests" />
       <option name="METHOD_NAME" value="partialTest" />
       <option name="TEST_OBJECT" value="method" />
@@ -145,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tests" />
+        <item itemvalue="JUnit.Ex2_1Test.testRunTimes" />
         <item itemvalue="JUnit.Tests.partialTest" />
-        <item itemvalue="Application.Ex2_2" />
-        <item itemvalue="Application.Ex2_2.Ex2_2" />
-        <item itemvalue="Application.Ex2Main" />
+        <item itemvalue="JUnit.Ex2_1Test.testCreateFilesRegular" />
+        <item itemvalue="JUnit.Ex2_1Test.testWriteFile" />
+        <item itemvalue="Application.Ex2_1" />
       </list>
     </recent_temporary>
   </component>
@@ -168,6 +196,7 @@
       <workItem from="1672688577349" duration="21713000" />
       <workItem from="1672823255884" duration="12386000" />
       <workItem from="1673026665858" duration="5285000" />
+      <workItem from="1673187627970" duration="38297000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted unnecessary interface">
       <created>1672314736031</created>
@@ -197,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672839238675</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Impelemted CustomExecutor">
+      <created>1673111623166</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673111623166</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +255,19 @@
     <MESSAGE value="Implemented file generating and line counting" />
     <MESSAGE value="Added TaskType enum class" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="Impelemted CustomExecutor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Impelemted CustomExecutor" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Ex2P2/Tests.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
