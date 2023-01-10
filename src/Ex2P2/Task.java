@@ -18,7 +18,7 @@ public class Task<T> implements Comparator<Task<T>>, Callable<T>{
     private final TaskType taskType; //Task-type which also indicates priority.
     private final Callable<T> callable; //Custom callable function.
     private Future<T> value; //Value of the instance returned by callable
-    //private T result; //Regular result storing
+    private T result; //Regular result storing
 
 
     /**

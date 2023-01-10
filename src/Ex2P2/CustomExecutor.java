@@ -68,6 +68,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
         demoPriorityBlockingQueue.add(task);
         try{
             future = super.submit(task);
+            demoPriorityBlockingQueue.remove();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="282.0" y="-1162.5">Ex2P1.CounterThread</node>
+    <node x="24.0" y="-929.5">Ex2P1.Ex2_1</node>
+    <node x="-162.0" y="-1218.0">java.util.concurrent.Callable</node>
+    <node x="31.5" y="-1137.5">Ex2P1.ThreadPoolHelper</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Ex2P1.Ex2_1" target="Ex2P1.ThreadPoolHelper" relationship="CREATE">
+      <point x="0.0" y="-113.5" />
+      <point x="40.0" y="41.5" />
+    </edge>
+    <edge source="Ex2P1.Ex2_1" target="Ex2P1.CounterThread" relationship="CREATE">
+      <point x="0.0" y="-113.5" />
+      <point x="186.0" y="-956.0" />
+      <point x="386.0" y="-956.0" />
+      <point x="0.0" y="66.5" />
+    </edge>
+    <edge source="Ex2P1.ThreadPoolHelper" target="java.util.concurrent.Callable" relationship="REALIZATION">
+      <point x="-114.5" y="-0.0" />
+      <point x="-85.0" y="-1096.0" />
+      <point x="-0.0" y="29.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.3483670295489891" showDependencies="true" x="81.0" y="-896.5" />
+  <SelectedNodes>
+    <node>Ex2P1.Ex2_1</node>
+    <node>Ex2P1.ThreadPoolHelper</node>
+    <node>Ex2P1.CounterThread</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
