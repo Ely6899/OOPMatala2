@@ -113,12 +113,28 @@ An `enum` class, which holds 3 values:
 The values near each `enum` represent the priority value of it ***(lower number is higher priority)***
 
 #### `Task.java`
-A class which implements the `callable`interface, which holds a `callable` function, and a value derived from the function. However, in addition to it, it also holds a special `TaskType` instance, which dictates how important that `Task` instance is, which is unlike the regular `callable` instances used for the Java built-in `ThreadPoolExecutor`. This is important because we will use the `TaskType` `priority value` to compare between each `Task` instance, so that the more important tasks(which have a lower numerical `priority value`) are sent to our `CustomExecutor` before the least important ones.<br >
+A class which implements the `callable` interface, which holds a `callable` function, and a value derived from the function. However, in addition to it, it also holds a special `TaskType` instance, which dictates how important that `Task` instance is, which is unlike the regular `callable` instances used for the Java built-in `ThreadPoolExecutor`. This is important because we will use the `TaskType` `priority value` to compare between each `Task` instance, so that the more important tasks(which have a lower numerical `priority value`) are sent to our `CustomExecutor` before the least important ones.<br >
 In addition, this class is defined to be `generic`, and the type is defined by the value the `callable` function returns. Therefore, `Task` can
 hold any `Type` we want.<br >
 The holding of values is done in the `Future` instance defined in `Task`.<br >
 `Future` is a `generic` built in Java class which acts as a value holder when the `callable` fuction was submitted to the `ThreadPoolExecutor`.
-Getting its value is defined by calling the `get()` function, which is also defined in our `Task` class for that purpose.
+Getting its value is defined by calling the `get()` function, which is also defined in our `Task` class for that purpose.<br >
+This class also uses the `Factory method` design pattern. The implementation of it is evident in the static function `createTask`.<br >
+The `Task` instances can be compared because of the implementation of `Comparator<Task<T>>`, by overriding the `compare()` function.<br >
+
+#### `CustomExecutor.java`
+The custom `thread-pool` we were required to implement. It extends the `ThreadPoolExecutor` class, which allows us to inherit the constructor of
+`ThreadPoolExecutor` and define it with our custom settings that were required.<br >
+The main change is in the `PriorityQueue` that we pass to `ThreadPoolExecutor`. We want the `PriorityQueue`, which was passed as
+`PriorityBlockingQueue` to sort the tasks passed to it by the `priority value` of each task. This is possible because of the implementation of the ***inner
+class*** `TaskComparator`, which handles the sorting of the `PriorityBlockingQueue` by passing a new `TaskComparator` instance to it.<br >
+It was also required to implement our own `submit()` function, which acts exactly the same as the original built in Java `submit()`.
+However, a problem we encountered was that because `Task` is a `callable` class, the `ThreadPoolExecutor` refused to recieve a `non-runnable` class.
+To solve this, we adapt the given task to a `TaskReqAdapter` class, which handles adapting the `Task` instance to be `runnable`, without the
+loss of the original `Task` functionality. This is the class which represents the ***Adapter*** design pattern in our implemention.<br >
+Finally, it also has a function called `getCurrentMax()`, which returns the highest ***numerical*** priority which is currently in the
+`PriorityBlockingQueue`. It's calculation is done using the `BeforeExecute()` function and is saved in the `maxPriority` field.
+
 
 
 
