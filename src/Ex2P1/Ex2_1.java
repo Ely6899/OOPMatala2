@@ -191,7 +191,7 @@ public class Ex2_1{
         threadPool.shutdown(); //Close thread-pool after finishing submissions
         try {
             //Don't continue until all thread in the threadPool have finished executing.
-            threadPool.awaitTermination(10, TimeUnit.MINUTES);
+            while(!(threadPool.awaitTermination(10, TimeUnit.MINUTES)));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -12,6 +12,7 @@ import java.util.concurrent.*;
  * Each task instance will also hold a priority value of the task,
  * which will indicate a thread-pool executing it to figure out its execution priority.
  * @param <T> A genetic type of the Task instance.
+ * implements Comparator and Callable interfaces.
  */
 public class Task<T> implements Comparator<Task<T>>, Callable<T>{
 
@@ -44,50 +45,45 @@ public class Task<T> implements Comparator<Task<T>>, Callable<T>{
 
     /**
      * A Static function which activates a private constructor according to the parameters given.
+     * createTask implements the FactoryMethod design pattern. we want to hide from the user the complexity
+     * of our constructor, and give him a simple way to create a Task instance using the class name itself.
      * @param callable Callable function.
      * @return Task instance.
      * @param <T> Genetic type of Task instance created.
+     *
      */
     public static <T> Task<T> createTask(Callable<T> callable){
-        return new Task<T>(callable);
+        return new Task<>(callable);
     }
 
 
     /**
      * A Static function which activates a private constructor according to the parameters given.
      * Overloads above createTask.
+     * createTask implements the FactoryMethod design pattern. we want to hide from the user the complexity
+     * of our constructor, and give him a simple way to create a Task instance using the class name itself.
      * @param callable Callable function.
      * @param taskType enum representing priority of the Task instance.
      * @return Task instance.
      * @param <T> Genetic type of Task instance created.
      */
     public static <T> Task<T> createTask(Callable<T> callable, TaskType taskType){
-        return new Task<T>(callable, taskType);
+        return new Task<>(callable, taskType);
     }
 
 
     /**
-     * In addition to activating the callable field call function,
-     * it determines the maxPriority in the call moment of the
-     * task queue defined in CustomExecutor.
+     * the function activates the callable using the call() method.
      * @return call function value.
-     * @throws Exception whenever an exception occurs.
+     * @throws RuntimeException if call() gets an exception like InterruptedException.
      */
     @Override
     public T call() throws Exception {
-        if(CustomExecutor.demoPriorityBlockingQueue.isEmpty())
-            CustomExecutor.maxPriority = 10;
-        else
-            CustomExecutor.maxPriority = CustomExecutor.demoPriorityBlockingQueue.peek().hashCode();
-        return this.callable.call();
-    }
-
-    /**
-     * Sets the future value.
-     * @param future new future value.
-     */
-    public void setFuture(Future<T> future){
-        this.value = future;
+        try {
+            return this.callable.call();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -114,6 +110,15 @@ public class Task<T> implements Comparator<Task<T>>, Callable<T>{
     public T get(long timeWait, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         value.get(timeWait, timeUnit);
         return (T)value.resultNow();
+    }
+
+
+    /**
+     * Sets the future value.
+     * @param future new future value.
+     */
+    public void setFuture(Future<T> future){
+        this.value = future;
     }
 
 

@@ -36,16 +36,16 @@ public class Tests {
             StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             return sb.reverse().toString();
         };
-// var is used to infer the declared type automatically
+        // var is used to infer the declared type automatically
         var priceTask = customExecutor.submit(() -> {
             return 1000 * Math.pow(1.02, 5);
-        }, TaskType.COMPUTATIONAL);
+        }, TaskType.IO);
         var reverseTask = customExecutor.submit(callable2, TaskType.IO);
         final Double totalPrice;
         final String reversed;
         try {
-            totalPrice = (Double) priceTask.get();
-            reversed = (String) reverseTask.get();
+            totalPrice = priceTask.get();
+            reversed = reverseTask.get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +76,14 @@ public class Tests {
             }
             return sum;
         }, TaskType.COMPUTATIONAL);
-        var sumTask = customExecutor.submit(task);
+        Task<Integer> task2 = Task.createTask(() -> {
+            int sum = 1;
+            for (int i = 1; i <= 10; i++) {
+                sum += i;
+            }
+            return sum;
+        }, TaskType.IO);
+        var sumTask = customExecutor.submit(task2);
         final int sum;
         try {
             sum = sumTask.get(1, TimeUnit.MILLISECONDS);
@@ -161,6 +168,7 @@ public class Tests {
             throw new RuntimeException(e);
         }
 
-        assertEquals(1, customExecutor.getCurrentMax());
+        assertEquals(2, customExecutor.getCurrentMax());
     }
+
 }

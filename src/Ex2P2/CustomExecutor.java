@@ -38,13 +38,10 @@ class TaskComparator implements Comparator<Object> {
  * Each Task which runs in the thread-pool will run asynchronously.
  */
 public class CustomExecutor extends ThreadPoolExecutor {
-    //Holds the Tasks, will prioritize the tasks based on their priority value.
-    protected static PriorityBlockingQueue<Object> demoPriorityBlockingQueue = new PriorityBlockingQueue<>(10,new TaskComparator());
-    static int maxPriority; //Saves priority queue biggest priority currently in the queue.
-
+    static int maxPriority = 0; //the maximum priority currently in the queue.
 
     /**
-     * Builds a new ThreadPoolExecutor based on a priorityBlockingQueue
+     * builds a new ThreadPoolExecutor based on a priorityBlockingQueue
      * which sorts the tasks according to the priority values.
      */
     public CustomExecutor() {
@@ -57,33 +54,49 @@ public class CustomExecutor extends ThreadPoolExecutor {
 
 
     /**
-     * Submits a task to the priority queue defined in the constructor
-     * and returns the future value derived from the submission.
+     * the function creates a new TaskReqAdapter instance which will be submitted to the thread-pool.
+     * TaskReqAdapter is a FutureTask that wraps the generic task that implements callable with a runnable.
+     * and returns the future value derived from the execution.
      * @param task A generic task
-     * @return future of the value of the task callable invoked to submit() of the thread-pool.
+     * @return futureTask of the value of the task callable invoked to execute() of the thread-pool.
      * @param <V> Generic type of the Task instance given.
+     * @throws NullPointerException whenever the task equals to null
+     * @throws RuntimeException if the thread or the futureTask gets interrupted due to OS or timeout.
      */
     public <V> Future<V> submit(Task<V> task){
-        Future<V> future;
-        demoPriorityBlockingQueue.add(task);
+        if (task == null) throw new NullPointerException("task is null");
+
+        TaskReqAdapter<V> taskReqAdapter = new TaskReqAdapter<>(task, task.getTaskType());
         try{
-            future = super.submit(task);
-            demoPriorityBlockingQueue.remove();
+            super.execute(taskReqAdapter);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return future;
+        return taskReqAdapter;
+    }
+
+    /**
+     * the function casts the runnable to a TaskReqAdapter in order to get its priority
+     * if the priority is bigger than the maxPriority, maxPriority will be updated.
+     * and then calls the super.beforeExecute() function with the same t and r.
+     */
+    @Override
+    protected void beforeExecute(Thread t, Runnable r) {
+        TaskReqAdapter<?> taskReqAdapter = (TaskReqAdapter<?>) r;
+        if(taskReqAdapter.getPriority() > maxPriority){
+            maxPriority = taskReqAdapter.getPriority();
+        }
+        super.beforeExecute(t, r);
     }
 
 
     /**
      * Acts like the original submit, however, since it doesn't explicitly get
      * a Task instance, we build the instance inside the function, using
-     * the createTask() static method, and then activate the original submit
-     * with the new instance.
-     * @param callable A callable function
-     * @param taskType TaskType enum.
-     * @return future of the value of the task callable invoked to submit() of the thread-pool.
+     * the createTask() static method, and then activate the original submit with the new instance.
+     * @param callable A callable instance
+     * @param taskType TaskType enum value representing the priority of the task.
+     * @return FutureTask of the value of the task callable invoked to submit() of the thread-pool.
      * @param <V> Generic type of the callable function. which means it is the return type.
      */
     public <V> Future<V> submit(Callable<V> callable, TaskType taskType){
@@ -94,10 +107,9 @@ public class CustomExecutor extends ThreadPoolExecutor {
     /**
      * Acts like the original submit, however, since it doesn't explicitly get
      * a Task instance, we build the instance inside the function, using
-     * the createTask() static method, and then activate the original submit
-     * with the new instance.
+     * the createTask() static method, and then activate the original submit with the new instance.
      * @param callable A callable function
-     * @return future of the value of the task callable invoked to submit() of the thread-pool.
+     * @return FutureTask of the value of the task callable invoked to submit() of the thread-pool.
      * @param <V> Generic type of the callable function. which means it is the return type.
      */
     public <V> Future<V> submit(Callable<V> callable){
@@ -107,11 +119,15 @@ public class CustomExecutor extends ThreadPoolExecutor {
 
     /**
      * Shuts done the thread-pool and awaits the termination of all running threads remaining.
+     * since awaitTermination is a function that checks if the thread-pool is terminated in one specific
+     * given time, we use a while loop to check all the time if the thread-pool is terminated.
+     * timeout - the time to wait for the termination of the thread-pool.
+     * @throws RuntimeException if the thread or the futureTask gets interrupted.
      */
     public void gracefullyTerminate(){
-        this.shutdown();
         try {
-            this.awaitTermination(10, TimeUnit.MINUTES);
+            this.shutdown();
+            while(!(this.awaitTermination(10, TimeUnit.MINUTES)));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -119,7 +135,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
 
 
     /**
-     * Gets the value of maxPriority, which is calculated in the call() function of the Task class.
+     * Gets the value of maxPriority, which is calculated in beforeExecute() function.
      * The value returned represents the max priority value currently in the priority queue in the
      * moment of invoking this method.
      * @return maxPriority value in the moment of invoking the method.

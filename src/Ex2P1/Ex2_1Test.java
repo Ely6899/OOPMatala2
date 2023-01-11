@@ -38,7 +38,7 @@ class Ex2_1Test {
 
     @Test
     void testRunTimes(){
-        String[] files = Ex2_1.createTextFiles(10, seed, 10000); //Create files
+        String[] files = Ex2_1.createTextFiles(1000, seed, 1000); //Create files
         System.err.println("Finished generating files");
 
         long startTimeRegular = System.currentTimeMillis(); //Start measuring regular algorithm run-time.

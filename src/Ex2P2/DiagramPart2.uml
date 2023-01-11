@@ -3,45 +3,59 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-167.0" y="294.5">Ex2P2.Task</node>
-    <node x="264.5" y="39.5">Ex2P2.TaskComparator</node>
-    <node x="291.0" y="-101.5">java.lang.Comparable</node>
-    <node x="-172.0" y="52.0">java.util.concurrent.Callable</node>
-    <node x="196.5" y="391.0">Ex2P2.CustomExecutor</node>
-    <node x="3.5" y="-21.0">Ex2P2.TaskType</node>
+    <node x="-252.0" y="453.5">Ex2P2.TaskReqAdapter</node>
+    <node x="455.0" y="-29.0">java.util.concurrent.Callable</node>
+    <node x="630.5" y="-102.0">Ex2P2.TaskType</node>
+    <node x="400.0" y="333.5">Ex2P2.Task</node>
+    <node x="-236.5" y="818.0">Ex2P2.CustomExecutor</node>
+    <node x="91.5" y="478.5">Ex2P2.TaskComparator</node>
+    <node x="-234.5" y="-29.0">java.lang.Runnable</node>
+    <node x="-79.5" y="-233.0">java.util.Comparator</node>
   </nodes>
   <notes />
   <edges>
     <edge source="Ex2P2.Task" target="java.util.concurrent.Callable" relationship="TO_ONE">
       <point x="80.0" y="-186.5" />
-      <point x="85.0" y="261.0" />
-      <point x="-55.0" y="261.0" />
+      <point x="652.0" y="300.0" />
+      <point x="572.0" y="300.0" />
       <point x="40.0" y="29.0" />
     </edge>
     <edge source="Ex2P2.Task" target="Ex2P2.TaskType" relationship="TO_ONE">
       <point x="80.0" y="-186.5" />
-      <point x="-40.0" y="102.0" />
+      <point x="-100.0" y="102.0" />
+    </edge>
+    <edge source="Ex2P2.CustomExecutor" target="Ex2P2.TaskReqAdapter" relationship="CREATE">
+      <point x="0.0" y="-102.0" />
+      <point x="20.0" y="66.5" />
     </edge>
     <edge source="Ex2P2.Task" target="java.util.concurrent.Callable" relationship="REALIZATION">
-      <point x="-140.0" y="-186.5" />
+      <point x="-80.0" y="-186.5" />
       <point x="-40.0" y="29.0" />
     </edge>
-    <edge source="Ex2P2.TaskType" target="java.lang.Comparable" relationship="REALIZATION">
-      <point x="-0.0" y="-102.0" />
-      <point x="125.0" y="-72.5" />
-      <point x="-94.0" y="-0.0" />
+    <edge source="Ex2P2.Task" target="java.util.Comparator" relationship="REALIZATION">
+      <point x="-80.0" y="-186.5" />
+      <point x="492.0" y="320.0" />
+      <point x="212.0" y="320.0" />
+      <point x="40.0" y="233.0" />
+    </edge>
+    <edge source="Ex2P2.TaskReqAdapter" target="java.lang.Runnable" relationship="REALIZATION">
+      <point x="-80.0" y="-66.5" />
+      <point x="0.0" y="29.0" />
     </edge>
     <edge source="Ex2P2.CustomExecutor" target="Ex2P2.TaskComparator" relationship="CREATE">
-      <point x="0.0" y="-90.0" />
-      <point x="-20.0" y="41.5" />
+      <point x="0.0" y="-102.0" />
+      <point x="-68.0" y="780.0" />
+      <point x="212.0" y="780.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="Ex2P2.TaskComparator" target="java.util.Comparator" relationship="REALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="40.0" y="233.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="true" x="246.0" y="279.0" />
+  <settings layout="Hierarchic Compact" zoom="0.68" showDependencies="true" x="321.0" y="404.5" />
   <SelectedNodes>
-    <node>Ex2P2.CustomExecutor</node>
-    <node>Ex2P2.TaskType</node>
-    <node>Ex2P2.TaskComparator</node>
-    <node>Ex2P2.Task</node>
+    <node>java.util.Comparator</node>
   </SelectedNodes>
   <Categories>
     <Category>Constructors</Category>
