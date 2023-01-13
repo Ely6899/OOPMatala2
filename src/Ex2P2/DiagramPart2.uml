@@ -3,59 +3,65 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-252.0" y="453.5">Ex2P2.TaskReqAdapter</node>
-    <node x="455.0" y="-29.0">java.util.concurrent.Callable</node>
-    <node x="630.5" y="-102.0">Ex2P2.TaskType</node>
-    <node x="400.0" y="333.5">Ex2P2.Task</node>
-    <node x="-236.5" y="818.0">Ex2P2.CustomExecutor</node>
-    <node x="91.5" y="478.5">Ex2P2.TaskComparator</node>
-    <node x="-234.5" y="-29.0">java.lang.Runnable</node>
-    <node x="-79.5" y="-233.0">java.util.Comparator</node>
+    <node x="182.5" y="-102.0">java.lang.Runnable</node>
+    <node x="517.0" y="376.5">Ex2P2.Task</node>
+    <node x="447.5" y="65.0">Ex2P2.TaskType</node>
+    <node x="475.0" y="-102.0">java.lang.Comparable</node>
+    <node x="80.5" y="425.0">Ex2P2.CustomExecutor</node>
+    <node x="-171.5" y="125.5">Ex2P2.TaskComparator</node>
+    <node x="85.0" y="100.5">Ex2P2.TaskReqAdapter</node>
+    <node x="712.0" y="138.0">java.util.concurrent.Callable</node>
   </nodes>
   <notes />
   <edges>
     <edge source="Ex2P2.Task" target="java.util.concurrent.Callable" relationship="TO_ONE">
-      <point x="80.0" y="-186.5" />
-      <point x="652.0" y="300.0" />
-      <point x="572.0" y="300.0" />
-      <point x="40.0" y="29.0" />
+      <point x="-80.0" y="-150.5" />
+      <point x="609.0" y="307.0" />
+      <point x="729.0" y="307.0" />
+      <point x="-60.0" y="29.0" />
     </edge>
     <edge source="Ex2P2.Task" target="Ex2P2.TaskType" relationship="TO_ONE">
-      <point x="80.0" y="-186.5" />
-      <point x="-100.0" y="102.0" />
+      <point x="-80.0" y="-150.5" />
+      <point x="609.0" y="307.0" />
+      <point x="569.0" y="307.0" />
+      <point x="0.0" y="102.0" />
     </edge>
     <edge source="Ex2P2.CustomExecutor" target="Ex2P2.TaskReqAdapter" relationship="CREATE">
       <point x="0.0" y="-102.0" />
-      <point x="20.0" y="66.5" />
+      <point x="0.0" y="66.5" />
     </edge>
     <edge source="Ex2P2.Task" target="java.util.concurrent.Callable" relationship="REALIZATION">
-      <point x="-80.0" y="-186.5" />
-      <point x="-40.0" y="29.0" />
-    </edge>
-    <edge source="Ex2P2.Task" target="java.util.Comparator" relationship="REALIZATION">
-      <point x="-80.0" y="-186.5" />
-      <point x="492.0" y="320.0" />
-      <point x="212.0" y="320.0" />
-      <point x="40.0" y="233.0" />
+      <point x="80.0" y="-150.5" />
+      <point x="-20.0" y="29.0" />
     </edge>
     <edge source="Ex2P2.TaskReqAdapter" target="java.lang.Runnable" relationship="REALIZATION">
-      <point x="-80.0" y="-66.5" />
+      <point x="-15.0" y="-66.5" />
+      <point x="-15.0" y="29.0" />
+    </edge>
+    <edge source="Ex2P2.TaskType" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-102.0" />
       <point x="0.0" y="29.0" />
     </edge>
     <edge source="Ex2P2.CustomExecutor" target="Ex2P2.TaskComparator" relationship="CREATE">
       <point x="0.0" y="-102.0" />
-      <point x="-68.0" y="780.0" />
-      <point x="212.0" y="780.0" />
+      <point x="249.0" y="367.0" />
+      <point x="-51.0" y="387.0" />
       <point x="0.0" y="41.5" />
     </edge>
-    <edge source="Ex2P2.TaskComparator" target="java.util.Comparator" relationship="REALIZATION">
-      <point x="0.0" y="-41.5" />
-      <point x="40.0" y="233.0" />
+    <edge source="Ex2P2.TaskReqAdapter" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-66.5" />
+      <point x="249.0" y="47.0" />
+      <point x="569.0" y="47.0" />
+      <point x="0.0" y="29.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.68" showDependencies="true" x="321.0" y="404.5" />
+  <settings layout="Hierarchic Compact" zoom="1.07125" showDependencies="true" x="357.0" y="298.0" />
   <SelectedNodes>
-    <node>java.util.Comparator</node>
+    <node>Ex2P2.CustomExecutor</node>
+    <node>Ex2P2.TaskType</node>
+    <node>Ex2P2.TaskReqAdapter</node>
+    <node>Ex2P2.TaskComparator</node>
+    <node>Ex2P2.Task</node>
   </SelectedNodes>
   <Categories>
     <Category>Constructors</Category>

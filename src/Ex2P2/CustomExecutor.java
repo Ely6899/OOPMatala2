@@ -2,8 +2,6 @@ package Ex2P2;
 
 import java.util.Comparator;
 import java.util.concurrent.*;
-
-
 /**
  * A custom comparator which will be used as
  * the comparator for the priority queue
@@ -38,7 +36,7 @@ class TaskComparator implements Comparator<Object> {
  * Each Task which runs in the thread-pool will run asynchronously.
  */
 public class CustomExecutor extends ThreadPoolExecutor {
-    static int maxPriority = 0; //the maximum priority currently in the queue.
+    private int maxPriority = 0; //the maximum priority currently in the queue.
 
     /**
      * builds a new ThreadPoolExecutor based on a priorityBlockingQueue

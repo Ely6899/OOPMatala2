@@ -18,9 +18,6 @@ public class Task<T> implements Comparator<Task<T>>, Callable<T>{
 
     private final TaskType taskType; //Task-type which also indicates priority.
     private final Callable<T> callable; //Custom callable function.
-    private Future<T> value; //Value of the instance returned by callable
-    private T result; //Regular result storing
-
 
     /**
      * A private constructor which defaults the task-type to be of the least significance.
@@ -85,42 +82,6 @@ public class Task<T> implements Comparator<Task<T>>, Callable<T>{
             throw new RuntimeException(e);
         }
     }
-
-
-    /**
-     * Calls the Future field's get function, which gets the actual value in the Future instance.
-     * @return concrete value of Future instance.
-     * @throws ExecutionException whenever there is a problem with the execution.
-     * @throws InterruptedException whenever the thread was interrupted during execution.
-     */
-    public T get() throws ExecutionException, InterruptedException {
-        return value.get();
-    }
-
-
-    /**
-     * Overloads above get function. same functionality, but new parameters act as waiting time.
-     * @param timeWait Time to wait for the execution.
-     * @param timeUnit Units of the time
-     * @return concrete value of Future instance.
-     * @throws ExecutionException whenever there is a problem with the execution.
-     * @throws InterruptedException whenever the thread was interrupted during execution.
-     * @throws TimeoutException whenever waiting has timed out.
-     */
-    public T get(long timeWait, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
-        value.get(timeWait, timeUnit);
-        return (T)value.resultNow();
-    }
-
-
-    /**
-     * Sets the future value.
-     * @param future new future value.
-     */
-    public void setFuture(Future<T> future){
-        this.value = future;
-    }
-
 
     /**
      * Getter of task type.
